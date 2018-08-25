@@ -1,0 +1,267 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "GoMedigap Ping Post Buy API",
+    "version": "1.0.0",
+    "title": "Ping Post Buy",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "patrick.guevara@ehealth.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "mediapp.gomedigap.com",
+  "basePath": "/api/pingposts",
+  "tags": [
+    {
+      "name": "Receive Ping",
+      "description": "Receive Ping from Vendor"
+    },
+    {
+      "name": "Receive Post",
+      "description": "Receive Post from Vendor"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/receiveping": {
+      "post": {
+        "tags": [
+          "Receive Ping"
+        ],
+        "summary": "Receive Ping payload from Vendor",
+        "description": "Get ping information from Vendor. Used to decide bid value.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Payload from Vendor",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "vendorId": {
+                  "type": "string",
+                  "example": "GMG"
+                },
+                "zip": {
+                  "type": "integer",
+                  "example": 78746
+                },
+                "birthday": {
+                  "type": "string",
+                  "example": "MM/DD/YYYY"
+                },
+                "tobacco": {
+                  "type": "string",
+                  "example": "Y"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "M"
+                },
+                "src": {
+                  "type": "string",
+                  "example": "your_sub_source_identifier"
+                },
+                "alliance": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "allianceId": {
+                        "type": "string"
+                      },
+                      "allianceUid": {
+                        "type": "string"
+                      },
+                      "alliancePartnerId": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "allianceId": "gmg_12345",
+                      "allianceUid": "gmg_u_12345",
+                      "alliancePartnerId": "gmg_partner_12345"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Received Ping successfully and submitted bid.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "leadAuctionId": {
+                  "type": "integer",
+                  "example": 123456
+                },
+                "bid": {
+                  "type": "integer",
+                  "example": 22
+                },
+                "details": {
+                  "type": "string",
+                  "example": "Thank You"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Generic failure.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "type": "string",
+                  "example": "failure"
+                },
+                "details": {
+                  "type": "string",
+                  "example": "Please Set vendorId."
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Quota reached.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "type": "string",
+                  "example": "failure"
+                },
+                "leadAuctionId": {
+                  "type": "integer",
+                  "example": 123456
+                },
+                "details": {
+                  "type": "string",
+                  "example": "Quota Reached"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/receivepost": {
+      "post": {
+        "tags": [
+          "Receive Post"
+        ],
+        "summary": "Receive Post payload from Vendor",
+        "description": "Get post information from Vendor. Used to create lead in Mediapp.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Payload from Vendor",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "leadAuctionId": {
+                  "type": "string",
+                  "example": "123456"
+                },
+                "ip": {
+                  "type": "string",
+                  "example": "127.0.0.1"
+                },
+                "firstName": {
+                  "type": "string",
+                  "example": "Johnny"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Appleseed"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "johnny.appleseed@example.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "5551231234"
+                },
+                "xid": {
+                  "type": "string",
+                  "example": "your_internal_lead_id"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Received Post successfully and created lead.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "type": "string",
+                  "example": "success"
+                },
+                "details": {
+                  "type": "string",
+                  "example": "Thank You"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Server Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
