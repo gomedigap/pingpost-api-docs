@@ -16,10 +16,8 @@ Receive a Post from a Vendor.  Used to create lead.
  
 
 ### Contact
-**Lead Buying** 
 
-Jacob Von Feldt: <mailto:jacob.vonfeldt@gomedigap.com>
-
-**API Developer**
- 
-Patrick Guevara: <patrick.guevara@gomedigap.com>
+Responsibility | Name | Email
+---------------|------|------
+Lead Buying | Jacob Von Feldt | <jacob.vonfeldt@gomedigap.com>
+API Development | Patrick Guevara | <patrick.guevara@gomedigap.com>
