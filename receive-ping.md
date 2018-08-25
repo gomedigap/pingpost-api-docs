@@ -67,7 +67,7 @@ Consumes | Produces
 ```json
 {
   "response": "failure",
-  "leadAuctionId": 123456
+  "leadAuctionId": 123456,
   "details": "Quota Reached"
 }
 ```
