@@ -24,13 +24,13 @@ Consumes | Produces
     "tobacco": "Y",
     "gender": "M",
     "src": "your_sub_source_identifier",
-    "alliance": [
-      {
+    "alliance": {
         "allianceId": "gmg_12345",
         "allianceUid": "gmg_u_12345",
         "alliancePartnerId": "gmg_partner_12345"
-      }
-    ]
+    },
+    "tcpa_token": "tcpa_token_value",
+    "tcpa_text": "tcpa_text_value",
 }
 ```
 
