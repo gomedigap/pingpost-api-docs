@@ -24,8 +24,7 @@ Consumes | Produces
     "tobacco": "Y",
     "gender": "M",
     "src": "your_sub_source_identifier",
-    "alliance":
-    {
+    "alliance": {
         "allianceId": "gmg_12345",
         "allianceUid": "gmg_u_12345",
         "alliancePartnerId": "gmg_partner_12345"
