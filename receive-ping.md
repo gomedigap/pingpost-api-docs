@@ -30,7 +30,7 @@ Consumes | Produces
         "alliancePartnerId": "gmg_partner_12345"
     },
     "tcpa_token": "tcpa_token_value",
-    "tcpa_text": "tcpa_text_value",
+    "tcpa_text": "tcpa_text_value"
 }
 ```
 
